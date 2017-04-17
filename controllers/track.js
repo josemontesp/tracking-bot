@@ -5,8 +5,8 @@ module.exports = (telegram, message, options) => {
   let params = message.text.split(' ').map(p => p.trim());
   // let command = params[0];
   let service = 'correos-chile';
-  let trackingCode = params[2];
-  let shipmentName = params[3] || undefined;
+  let trackingCode = params[1];
+  let shipmentName = params[2] || undefined;
   console.log(shipmentName);
   let url = (service === 'correos-chile') ? 'http://www.correos.cl/SitePages/seguimiento/seguimiento.aspx?envio=' : 'http://www.chilexpress.cl/Views/ChilexpressCL/Resultado-busqueda.aspx?DATA=';
 
