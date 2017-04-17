@@ -1,1 +1,1 @@
-sudo forever start index.js --uid "tracking-bot"
+sudo forever start --id "tracking-bot" index.js 
