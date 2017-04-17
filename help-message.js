@@ -12,5 +12,5 @@ Para dejar de trackear un envío.
 <nombre> es el nombre que le diste a tu envío
 
 /help
-Para mostrar este menú de ayuda
+Para mostrar este cool menú de ayuda
 `;
