@@ -7,6 +7,7 @@ const help = require('./help.js');
 const cron = require('./cron.js');
 const track = require('./controllers/track.js');
 const list = require('./controllers/list.js');
+const untrack = require('./controllers/untrack.js');
 
 const api = new Telegram({
   token: config.telegramBotToken,
@@ -29,7 +30,7 @@ api.on('message', (message) => {
   } else if (/\/list/.test(text)) {
     list(api, message, config.botOptions);
   } else if (/\/untrack (.+)/.test(text)) {
-    1;
+    untrack(api, message, config.botOptions);
   } else if (/\/help?(.+)/.test(text)) {
     api.sendMessage({
       chat_id: message.chat.id,
