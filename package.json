@@ -12,7 +12,8 @@
     "correos-chile": "^1.2.4",
     "cron": "^1.2.1",
     "mongoose": "^4.9.4",
-    "node-telegram-bot-api": "^0.27.0"
+    "node-telegram-bot-api": "^0.27.0",
+    "telegram-bot-api": "^1.2.0"
   },
   "author": "",
   "license": "ISC"
