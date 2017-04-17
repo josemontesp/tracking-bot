@@ -1,0 +1,19 @@
+{
+  "name": "trackingbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "chileexpress": "^1.2.2",
+    "correos-chile": "^1.2.4",
+    "cron": "^1.2.1",
+    "mongoose": "^4.9.4",
+    "node-telegram-bot-api": "^0.27.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
