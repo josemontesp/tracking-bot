@@ -3,11 +3,12 @@ const Telegram = require('telegram-bot-api');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird'); // Use nice promises in mongoose
 const config = require('./config.js');
-const help = require('./help.js');
 const cron = require('./cron.js');
 const track = require('./controllers/track.js');
 const list = require('./controllers/list.js');
 const untrack = require('./controllers/untrack.js');
+const help = require('./controllers/help.js');
+const helpMessage = require('./help-message.js');
 
 const api = new Telegram({
   token: config.telegramBotToken,
@@ -32,14 +33,11 @@ api.on('message', (message) => {
   } else if (/\/untrack (.+)/.test(text)) {
     untrack(api, message, config.botOptions);
   } else if (/\/help?(.+)/.test(text)) {
-    api.sendMessage({
-      chat_id: message.chat.id,
-      text: help
-    });
+    help(api, message, config.botOptions);
   } else {
     api.sendMessage({
       chat_id: message.chat.id,
-      text: 'Oops! Creo que no entendí lo que me quieres decir. Mi creador solo me enseñó estos comandos:\n' + help
+      text: 'Oops! Creo que no entendí lo que me quieres decir. Mi creador solo me enseñó estos comandos:\n' + helpMessage
     });
   }
 });
