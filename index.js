@@ -1,11 +1,12 @@
 'use strict';
-const track = require('./controllers/track.js');
 const Telegram = require('telegram-bot-api');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird'); // Use nice promises in mongoose
 const config = require('./config.js');
 const help = require('./help.js');
 const cron = require('./cron.js');
+const track = require('./controllers/track.js');
+const list = require('./controllers/list.js');
 
 const api = new Telegram({
   token: config.telegramBotToken,
@@ -26,7 +27,7 @@ api.on('message', (message) => {
   if (/\/track (.+) (.+)/.test(text)) {
     track(api, message, config.botOptions);
   } else if (/\/list/.test(text)) {
-    1;
+    list(api, message, config.botOptions);
   } else if (/\/untrack (.+)/.test(text)) {
     1;
   } else if (/\/help?(.+)/.test(text)) {
