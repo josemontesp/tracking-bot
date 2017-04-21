@@ -67,8 +67,8 @@ function fetchInformation () {
 module.exports = {
   start: function (_telegram) {
     telegram = _telegram;
-    // Every 5 minutes
-    new CronJob('0 */5 * * * *', fetchInformation, null, true);
+    // Every 2 minutes
+    new CronJob('0 */2 * * * *', fetchInformation, null, true);
   }
 };
 
