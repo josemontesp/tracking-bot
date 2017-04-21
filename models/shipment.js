@@ -68,7 +68,9 @@ schema.methods.getUpdate = function (old, newPass) {
       let newShipment = {};
       newShipment.history = (shipment.service === 'correos-chile') ? r.registros : r.hitos;
       diff = getDiff(newShipment.history, shipment.history);
-      shipment.history = newShipment.history;
+      if (diff.length > 0) {
+        shipment.history = newShipment.history;
+      }
       return shipment.save();
     })
     .then(shipment => {
