@@ -70,8 +70,10 @@ schema.methods.getUpdate = function (old, newPass) {
       diff = getDiff(newShipment.history, shipment.history);
       if (diff.length > 0) {
         shipment.history = newShipment.history;
+        shipment.lastUpdate = new Date();
+        return shipment.save();
       }
-      return shipment.save();
+      return shipment;
     })
     .then(shipment => {
       resolve(diff);
