@@ -2,7 +2,7 @@ module.exports = `
 /track <código> <nombre>
 Para empezar a trackear un envío.
 <código> es tu código de seguimiento.
-<nombre> es el nombre que le diste a tu envío
+<nombre> es el nombre que le quieres dar a tu envío
 
 /list
 Para listar tus envíos activos

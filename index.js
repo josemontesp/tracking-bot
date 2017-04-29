@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird'); // Use nice promises in mongoose
 const config = require('./config.js');
 const cron = require('./cron.js');
+const start = require('./controllers/start.js');
 const track = require('./controllers/track.js');
 const list = require('./controllers/list.js');
 const untrack = require('./controllers/untrack.js');
@@ -30,6 +31,8 @@ api.on('message', (message) => {
     track(api, message, config.botOptions);
   } else if (/\/list/.test(text)) {
     list(api, message, config.botOptions);
+  } else if (/\/start/.test(text)) {
+    start(api, message, config.botOptions);
   } else if (/\/untrack (.+)/.test(text)) {
     untrack(api, message, config.botOptions);
   } else if (/\/help?(.+)/.test(text)) {
