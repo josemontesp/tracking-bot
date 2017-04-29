@@ -3,10 +3,10 @@ const models = require('./../models');
 
 module.exports = (telegram, message, options) => {
   let params = message.text.split(' ').map(p => p.trim());
-  // let command = params[0];
+  let command = params.shift();
   let service = 'correos-chile';
-  let trackingCode = params[1];
-  let shipmentName = params[2] || undefined;
+  let trackingCode = params.shift();
+  let shipmentName = params.join(' ') || undefined;
   console.log(shipmentName);
   let url = (service === 'correos-chile') ? 'http://www.correos.cl/SitePages/seguimiento/seguimiento.aspx?envio=' : 'http://www.chilexpress.cl/Views/ChilexpressCL/Resultado-busqueda.aspx?DATA=';
 
