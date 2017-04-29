@@ -3,7 +3,8 @@ const models = require('./../models');
 
 module.exports = (telegram, message, options) => {
   let params = message.text.split(' ').map(p => p.trim());
-  let shipmentName = params[1];
+  let command = params.shift();
+  let shipmentName = params.join(' ') || undefined;
   models.Shipment.remove({
     username: message.from.username,
     shipmentName: shipmentName
