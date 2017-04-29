@@ -34,6 +34,8 @@ var schema = new Schema(
 schema.pre('save', function (next) {
   var shipment = this;
   if (this.isNew) {
+    // Check that a shipment with this name doesnt existe
+
     api(shipment.code, shipment.service)
     .then(r => {
       shipment.history = (shipment.service === 'correos-chile') ? r.registros : r.hitos;

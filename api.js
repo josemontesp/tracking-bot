@@ -3,7 +3,6 @@ const correos = require('correos-chile');
 const chileexpress = require('chileexpress');
 
 module.exports = (code, service) => {
-  console.log();
   return new Promise((resolve, reject) => {
     if (service === 'correos-chile') {
       correos([code])

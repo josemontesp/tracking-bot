@@ -19,7 +19,7 @@ module.exports = (telegram, message, options) => {
     code: trackingCode,
     service: service
   });
-  shipment.save()
+  return shipment.save()
   .then(shipment => {
     return telegram.sendMessage(Object.assign({}, options, {
       chat_id: message.chat.id,
@@ -27,10 +27,22 @@ module.exports = (telegram, message, options) => {
     }));
   })
   .catch(e => {
-    return telegram.sendMessage(Object.assign({}, options, {
-      chat_id: message.chat.id,
-      text: 'Tu código de seguimiento no es válido. Intenta acceder por <a href="' + url + trackingCode + '">' + 'acá</a>'
-    }));
+    if (e.message === 'El numero de seguimiento no existe') {
+      return telegram.sendMessage(Object.assign({}, options, {
+        chat_id: message.chat.id,
+        text: 'Tu código de seguimiento no es válido. Intenta acceder por <a href="' + url + trackingCode + '">' + 'acá</a>'
+      }));
+    } else if (e.message === 'Ya tienes un envío con este nombre.') {
+      return telegram.sendMessage(Object.assign({}, options, {
+        chat_id: message.chat.id,
+        text: 'Ya tienes un envío con este nombre. Usa /list para ver tus envíos activos'
+      }));
+    } else {
+      return telegram.sendMessage(Object.assign({}, options, {
+        chat_id: message.chat.id,
+        text: 'Pasó algo inesperado y no pude guardar tu envío. Intenta acceder por <a href="' + url + trackingCode + '">' + 'acá</a>'
+      }));
+    }
   });
 };
 // `
