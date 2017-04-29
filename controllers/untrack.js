@@ -5,9 +5,10 @@ module.exports = (telegram, message, options) => {
   let params = message.text.split(' ').map(p => p.trim());
   let command = params.shift();
   let shipmentName = params.join(' ') || undefined;
+  let regex = new RegExp(['^', shipmentName, '$'].join(''), 'i');
   models.Shipment.remove({
     username: message.from.username,
-    shipmentName: shipmentName
+    shipmentName: regex
   })
   .then(r => {
     console.log(r);
